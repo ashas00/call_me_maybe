@@ -1,0 +1,25 @@
+[project]
+name = "callmemaybe"
+version = "0.1.0"
+description = "Function calling with constrained decoding on a small LLM"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy", "pydantic", "llm-sdk"]
+
+[tool.uv.sources]
+llm-sdk = { path = "llm_sdk" }
+
+[dependency-groups]
+dev = ["flake8", "mypy"]
+
+[tool.mypy]
+exclude = ['^\.venv/', '^\.ft-cache/', '^llm_sdk/']
+namespace_packages = false
+
+[[tool.mypy.overrides]]
+module = ["llm_sdk", "llm_sdk.*"]
+ignore_errors = true
+ignore_missing_imports = true
+
+[tool.uv]
+cache-dir = ".ft-cache"
